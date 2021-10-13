@@ -7,4 +7,5 @@ class Comments(models.Model):
     dislikes = models.IntegerField(default = 0, null = True, blank = True)
 
 class Replies(models.Model):
+    comment_id = models.ForeignKey('commentsection.Comments', on_delete=models.CASCADE, default = '')
     message = models.CharField(max_length=280, blank = True, null = True, default = '')
