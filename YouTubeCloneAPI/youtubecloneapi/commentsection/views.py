@@ -37,6 +37,27 @@ class CommentDetail(APIView):
         serializer = CommentSerializer(comment)
         return Response(serializer.data)
 
+class CommentLikes(APIView):
+    def get_object(self, pk):
+        try:
+            return Comments.objects.get(pk=pk)
+        except Comments.DoesNotExist:
+            raise Http404
+    
+    def patch(self, request, pk):
+        comment = self.get_object(pk)
+        if request.path.endswith("up"):
+            comment.likes += 1
+        elif request.path.endswith("down"):
+            comment.dislikes += 1
+        serializer = CommentSerializer(comment, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST,
+        )
 
 # Replies Views
 class ReplyList(APIView):
@@ -64,3 +85,4 @@ class ReplyDetail(APIView):
         reply = self.get_object(pk)
         serializer = RepliesSerializer(reply)
         return Response(serializer.data)
+
