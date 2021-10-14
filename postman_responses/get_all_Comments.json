@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "message": "This video is great!",
+        "likes": 1,
+        "dislikes": 3,
+        "video": null
+    },
+    {
+        "id": 2,
+        "message": "This video is nice!",
+        "likes": 4,
+        "dislikes": 0,
+        "video": null
+    }
+]
