@@ -66,10 +66,10 @@ class ReplyList(APIView):
         serializer = RepliesSerializer(reply, many = True)
         return Response(serializer.data)
 
-    def post(self, request):
+    def post(self, request, comment):
         serializer = RepliesSerializer(data = request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(comment_id = comment)
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer._errors, status = status.HTTP_400_BAD_REQUEST)
 
