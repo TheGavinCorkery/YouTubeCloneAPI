@@ -1,16 +1,23 @@
 [
     {
-        "id": 1,
-        "message": "This video is great!",
-        "likes": 1,
-        "dislikes": 3,
-        "video": null
+        "id": 3,
+        "message": "This video is nice!",
+        "likes": 0,
+        "dislikes": 0,
+        "video": "testone"
     },
     {
-        "id": 2,
-        "message": "This video is nice!",
-        "likes": 4,
+        "id": 4,
+        "message": "Great advice!",
+        "likes": 0,
         "dislikes": 0,
-        "video": null
+        "video": "testone"
+    },
+    {
+        "id": 5,
+        "message": "Awesome video",
+        "likes": 0,
+        "dislikes": 0,
+        "video": "testone"
     }
 ]
