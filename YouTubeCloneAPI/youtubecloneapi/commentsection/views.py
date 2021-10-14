@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http.response import Http404
+from rest_framework import views
 from .models import Comments
 from .models import Replies
 from rest_framework.views import APIView
@@ -12,8 +13,8 @@ from .serializers import RepliesSerializer
 
 # Comment views
 class CommentList(APIView):
-    def get(self, request):
-        comment = Comments.objects.all()
+    def get(self, request, video):
+        comment = Comments.objects.filter(video=video)
         serializer = CommentSerializer(comment, many = True)
         return Response(serializer.data)
 
@@ -61,9 +62,9 @@ class CommentLikes(APIView):
 
 # Replies Views
 class ReplyList(APIView):
-    def get(self, request):
-        reply = Replies.objects.all()
-        serializer = RepliesSerializer(reply, many = True)
+    def get(self, request, comment):
+        replies = Replies.objects.filter(comment_id=comment)
+        serializer = RepliesSerializer(replies, many = True)
         return Response(serializer.data)
 
     def post(self, request, comment):
