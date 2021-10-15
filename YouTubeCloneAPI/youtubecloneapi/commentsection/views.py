@@ -18,7 +18,7 @@ class CommentList(APIView):
         serializer = CommentSerializer(comment, many = True)
         return Response(serializer.data)
 
-    def post(self, request):
+    def post(self, request, video):
         serializer = CommentSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
