@@ -11,8 +11,8 @@ urlpatterns = [
     # Get single reply by reply ID
     path('comment/<int:pk>/reply', views.ReplyDetail.as_view()),
     # Like/Dislike Comment
-    path('comment/<int:pk>/thumbs_up', views.CommentLikes.as_view()),
-    path('comment/<int:pk>/thumbs_down', views.CommentLikes.as_view()),
+    path('comments/<int:pk>/thumbs_up', views.CommentLikes.as_view()),
+    path('comments/<int:pk>/thumbs_down', views.CommentLikes.as_view()),
     # Post reply to comment by ID
     path('comment/reply/<int:comment>', views.ReplyList.as_view()),
 ]
