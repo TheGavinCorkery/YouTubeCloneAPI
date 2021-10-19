@@ -15,4 +15,6 @@ urlpatterns = [
     path('comments/<int:pk>/thumbs_down', views.CommentLikes.as_view()),
     # Post reply to comment by ID
     path('comments/reply/<int:comment>', views.ReplyList.as_view()),
+    # Get all replies by video
+    path('commentsection/<str:video>/', views.CommentSection.as_view()),
 ]

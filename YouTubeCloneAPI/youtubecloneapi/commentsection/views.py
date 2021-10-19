@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render
 from django.http.response import Http404
 from rest_framework import views
@@ -87,3 +88,19 @@ class ReplyDetail(APIView):
         serializer = RepliesSerializer(reply)
         return Response(serializer.data)
 
+#Get all replies that are tied to a video by Comment ID
+class CommentSection(APIView):
+    def get(self, request, video):
+        comment = Comments.objects.filter(video=video)
+        comment_serializer = CommentSerializer(comment, many = True)
+
+        
+        PK_list = []
+
+        for i, data in enumerate(comment_serializer.data):
+            PK_list.append(comment_serializer.data[i]["id"])
+            
+
+        replies = Replies.objects.filter(comment_id__in=PK_list)
+        serializer = RepliesSerializer(replies, many = True)
+        return Response(serializer.data)
